@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 import { NavigationEvents } from "react-navigation";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
@@ -9,19 +9,24 @@ const SignInScreen = () => {
   const { state, signin, clearErrorMessage } = useContext(Context);
 
   return (
-    <View style={styles.container}>
-      <NavigationEvents onWillBlur={clearErrorMessage} />
-      <AuthForm
-        headerText="Sign In to Your Account"
-        errorMessage={state.errorMessage}
-        onSubmit={signin}
-        submitButtonText="Sign In"
-      />
-      <NavLink
-        text="Don't have an account? Sign up instead"
-        routeName="Signup"
-      />
-    </View>
+    <ImageBackground
+      source={require("../../../tracks/assets/background.png")}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <View style={styles.container}>
+        <NavigationEvents onWillBlur={clearErrorMessage} />
+        <AuthForm
+          headerText="Sign In"
+          errorMessage={state.errorMessage}
+          onSubmit={signin}
+          submitButtonText="Sign In"
+        />
+        <NavLink
+          text="Don't have an account? Sign up instead"
+          routeName="Signup"
+        />
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -35,7 +40,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginBottom: 250,
+    alignItems: "center",
+    width: null,
+    height: null,
   },
 });
 

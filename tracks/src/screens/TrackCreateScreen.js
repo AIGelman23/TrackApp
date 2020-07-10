@@ -1,5 +1,5 @@
-import "../_MockLocation";
-import React, { useContext } from "react";
+//import "../_MockLocation";
+import React, { useContext, useCallback } from "react";
 import { StyleSheet } from "react-native";
 import { Text } from "react-native-elements";
 import { SafeAreaView, withNavigationFocus } from "react-navigation";
@@ -9,15 +9,23 @@ import useLocation from "../hooks/useLocation";
 import TrackForm from "../components/TrackForm";
 
 const TrackCreateScreen = ({ isFocused }) => {
-  const { state, addLocation } = useContext(LocationContext);
-  const [err] = useLocation(isFocused, (location) => {
-    addLocation(location, state.recording);
-  });
+  const {
+    state: { recording },
+    addLocation,
+  } = useContext(LocationContext);
+  const callback = useCallback(
+    (location) => {
+      addLocation(location, recording);
+    },
+    [recording]
+  );
+  const [err] = useLocation(isFocused || recording, callback);
+
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
       <Text h2>Create a Track</Text>
       <Map />
-      {err ? <Text>Please enable location services.</Text> : null}
+      {err ? <Text>Please enable location services</Text> : null}
       <TrackForm />
     </SafeAreaView>
   );
