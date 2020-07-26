@@ -7,6 +7,7 @@ import Map from "../components/Map";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
 import TrackForm from "../components/TrackForm";
+import Spacer from "../components/Spacer";
 
 const TrackCreateScreen = ({ isFocused }) => {
   const {
@@ -23,7 +24,9 @@ const TrackCreateScreen = ({ isFocused }) => {
 
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
-      <Text h2>Create a Track</Text>
+      <Spacer>
+        <Text h2>Create a Track</Text>
+      </Spacer>
       <Map />
       {err ? <Text>Please enable location services</Text> : null}
       <TrackForm />

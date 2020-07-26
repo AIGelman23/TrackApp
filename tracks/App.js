@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -22,7 +23,20 @@ const trackListFlow = createStackNavigator({
 
 trackListFlow.navigationOptions = {
   title: "Tracks",
-  tabBarIcon: <FontAwesome name="th-list" size={20} />,
+  tabBarOptions: {
+    style: {
+      backgroundColor: "#5059B9",
+    },
+    labelStyle: {
+      fontSize: 13,
+      color: "white",
+    },
+  },
+  tabBarIcon: (
+    <View style={{ paddingTop: 3 }}>
+      <FontAwesome name="th-list" size={30} color="black" />
+    </View>
+  ),
 };
 
 const switchNavigator = createSwitchNavigator({
@@ -58,5 +72,18 @@ export default () => {
 
 TrackCreateScreen.navigationOptions = {
   title: "Add Track",
-  tabBarIcon: <FontAwesome name="plus" size={20} />,
+  tabBarOptions: {
+    style: {
+      backgroundColor: "#5059B9",
+    },
+    labelStyle: {
+      fontSize: 13,
+      color: "white",
+    },
+  },
+  tabBarIcon: (
+    <View style={{ paddingTop: 3 }}>
+      <FontAwesome name="plus" size={30} />
+    </View>
+  ),
 };
